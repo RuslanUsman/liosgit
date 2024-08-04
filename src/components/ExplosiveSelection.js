@@ -152,15 +152,18 @@ const ExplosiveSelection = ({ setStep }) => {
 
   const handleSelectExplosive = (name) => {
     setSelectedExplosive(name);
+    tg.MainButton.text = "Далее";
+    tg.MainButton.show();
+    tg.MainButton.onClick(handleNextStep);
   };
 
   const handleNextStep = () => {
-    if (step === 1) {
+    if (step === 1 && selectedExplosive) {
       localSetStep(2);
-    } else if (step === 2) {
-      if (selectedMaterial) {
-        localSetStep(3);
-      }
+      tg.MainButton.hide();
+    } else if (step === 2 && selectedMaterial) {
+      localSetStep(3);
+      tg.MainButton.hide();
     }
   };
 
@@ -176,6 +179,9 @@ const ExplosiveSelection = ({ setStep }) => {
 
   const handleSelectMaterial = (name) => {
     setSelectedMaterial(name);
+    tg.MainButton.text = "Далее";
+    tg.MainButton.show();
+    tg.MainButton.onClick(handleNextStep);
   };
 
   const handleSelectBuildType = (name, quantity) => {
@@ -230,15 +236,6 @@ const ExplosiveSelection = ({ setStep }) => {
     );
   };
 
-  const handleTelegramButton = (action) => {
-    // Пример действия с Telegram кнопками
-    if (action === 'next') {
-      handleNextStep();
-    } else if (action === 'back') {
-      handlePreviousStep();
-    }
-  };
-
   return (
     <div className="App">
       {step === 1 ? (
@@ -254,25 +251,10 @@ const ExplosiveSelection = ({ setStep }) => {
               />
             ))}
           </div>
-          <button
-            className="next-step"
-            disabled={!selectedExplosive}
-            onClick={() => handleTelegramButton('next')}
-          >
-            Далее
-          </button>
         </div>
       ) : step === 2 ? (
         <div>
           <MaterialSelection onSelectMaterial={handleSelectMaterial} />
-          <button className="back-step" onClick={() => handleTelegramButton('back')}>Назад</button>
-          <button
-            className="next-step"
-            disabled={!selectedMaterial}
-            onClick={() => handleTelegramButton('next')}
-          >
-            Далее
-          </button>
         </div>
       ) : step === 3 ? (
         <div>
@@ -294,14 +276,12 @@ const ExplosiveSelection = ({ setStep }) => {
           {selectedMaterial === "Объекты" && (
             <ObjectBuildSelection onSelectBuildType={handleSelectBuildType} />
           )}
-          <button className="back-step" onClick={() => handleTelegramButton('back')}>Назад</button>
         </div>
       ) : step === 4 ? (
         <div>
           <p>
             {formatResultText()}
           </p>
-          <button className="back-step" onClick={() => handleTelegramButton('back')}>Назад</button>
         </div>
       ) : null}
     </div>
