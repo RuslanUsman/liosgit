@@ -1,0 +1,133 @@
+.App {
+  text-align: center;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 60px; /* Установите высоту заголовка по вашему желанию */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
+  color: white;
+  width: 100%;
+  box-sizing: border-box;
+  position: fixed; /* Плавающая позиция */
+  top: 0; /* Закрепить в верхней части экрана */
+  left: 0;
+  z-index: 1000; /* Убедитесь, что заголовок выше других элементов */
+}
+
+.explosive-grid-wrapper, .material-grid-wrapper {
+  display: flex;
+  justify-content: center; /* Центрирует контейнер карточек по горизонтали */
+  width: 100%;
+}
+
+.explosive-grid, .material-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Автоматическое заполнение колонок */
+  gap: 20px; /* Расстояние между карточками */
+  justify-items: center; /* Центрирует карточки по горизонтали */
+  width: 100%;
+  max-width: 800px; /* Максимальная ширина для контейнера */
+  margin: 0 auto; /* Центрирование контейнера по горизонтали */
+  box-sizing: border-box;
+}
+
+.explosive-card, .material-card {
+  background-color: #444;
+  border: 2px solid #888;
+  border-radius: 8px;
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.2s, border-color 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 100px;
+  min-height: 100px;
+  box-sizing: border-box;
+  overflow: hidden; /* Прячем выходящее за границы содержимое */
+}
+
+.explosive-card:hover, .material-card:hover {
+  background-color: #444; /* Немного светлее при наведении */
+}
+
+.explosive-card.selected, .material-card.selected {
+  border-color: #007bff;
+  background-color: #555; /* Немного светлее при выборе */
+}
+
+.explosive-image, .material-image {
+  width: 70%;
+  max-width: 100px; /* Ограниченная максимальная ширина изображения */
+  height: auto; /* Автоматическая высота для сохранения пропорций */
+  object-fit: contain; /* Сохранение пропорций изображения внутри контейнера */
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+.quantity-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.quantity-controls button {
+  margin: 0 10px;
+  padding: 5px 10px;
+  font-size: 16px;
+  color: white;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.quantity-controls button:hover {
+  background-color: #0056b3;
+}
+
+.quantity-controls span {
+  font-size: 18px;
+  margin: 0 10px;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  margin-top: 20px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+button:disabled {
+  background-color: #aaa;
+  cursor: not-allowed;
+}
+
+.result-text {
+  color: lightgreen; /* Светло-зеленый цвет */
+  font-weight: bold;
+}
+
+.highlight-text {
+  color: lightgreen; /* Светло-зеленый цвет */
+  font-weight: bold;
+  font-size: 23px;
+}

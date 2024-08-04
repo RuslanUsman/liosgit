@@ -1,0 +1,117 @@
+/* Обертка для сетки карточек типов построек из отличного железа */
+.steel-build-grid-wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+/* Сетка карточек типов построек из отличного железа */
+.steel-build-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 карточки в ряд */
+    gap: 20px;
+    justify-items: center;
+    width: 100%;
+    margin: 0 auto; /* Центрирование контейнера по горизонтали */
+    max-width: 800px;
+    box-sizing: border-box;
+}
+
+/* Карточка типа постройки из отличного железа */
+.steel-build-card {
+    background-color: #444;
+    border: 2px solid #888;
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.2s, border-color 0.2s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 100px;
+    min-height: 100px;
+    box-sizing: border-box;
+    overflow: hidden; /* Прячем выходящее за границы содержимое */
+}
+
+/* Стиль для карточек при наведении */
+.steel-build-card:hover {
+    background-color: #444;
+}
+
+/* Стиль для выбранной карточки */
+.steel-build-card.selected {
+    border-color: #007bff;
+    background-color: #555;
+}
+
+/* Стили для изображений в карточках */
+.steel-build-image {
+    width: 70%;
+    max-width: 100px; /* Ограниченная максимальная ширина изображения */
+    height: auto; /* Автоматическая высота для сохранения пропорций */
+    object-fit: contain; /* Сохранение пропорций изображения внутри контейнера */
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+/* Заголовок карточки */
+.steel-build-card h3 {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.2;
+    color: #f0f0f0;
+}
+
+/* Контейнер для кнопок управления количеством */
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+/* Кнопки управления количеством */
+.quantity-controls button {
+    margin: 0 5px;
+    padding: 5px 10px;
+    font-size: 14px;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+/* Стиль кнопок при наведении */
+.quantity-controls button:hover {
+    background-color: #0056b3;
+}
+
+/* Стиль кнопок, если они отключены */
+.quantity-controls button:disabled {
+    background-color: #6c757d;
+    cursor: not-allowed;
+}
+
+/* Отображение количества */
+.quantity-controls span {
+    margin: 0 10px;
+    font-size: 14px;
+    color: #f0f0f0;
+}
+
+/* Кнопка подтверждения выбора */
+.confirm {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #28a745;
+}
+
+/* Стиль кнопки подтверждения при наведении */
+.confirm:hover {
+    background-color: #218838;
+}

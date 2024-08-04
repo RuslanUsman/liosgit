@@ -1,0 +1,51 @@
+.explosive-card {
+  background-color: #444;
+  border: 2px solid #888;
+  border-radius: 8px;
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.2s, border-color 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 100px;
+  min-height: 100px;
+  box-sizing: border-box;
+}
+
+.explosive-card:hover {
+  background-color: #444;
+}
+
+.explosive-card.selected {
+  border-color: #007bff;
+  background-color: #555;
+}
+
+.explosive-image {
+  width: 100%;
+  max-width: 100px; /* Ограниченная максимальная ширина изображения */
+  height: auto; /* Автоматическая высота для сохранения пропорций */
+  object-fit: contain; /* Сохранение пропорций изображения внутри контейнера */
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+.explosive-card h3 {
+  margin: 0;
+  font-size: 15px; /* Увеличьте размер шрифта, чтобы текст был виден */
+  line-height: 1.2; /* Высота строки для управления межстрочным интервалом */
+  color: #f0f0f0; /* Цвет текста, который будет виден на тёмном фоне */
+  word-wrap: break-word; /* Переносит длинные слова на новую строку */
+  text-align: center; /* Центрирует текст по горизонтали */
+}
+
+@media (max-width: 500px) {
+  .explosive-card {
+    max-width: 150px;
+    height: auto; /* Убирает фиксированную высоту */
+  }
+}

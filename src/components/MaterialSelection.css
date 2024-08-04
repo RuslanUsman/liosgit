@@ -1,0 +1,47 @@
+.material-grid-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .material-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    width: 100%;
+    margin: 0 auto; /* Центрирование контейнера по горизонтали */
+    max-width: 800px;
+  }
+  
+  .material-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.2s, border-color 0.2s;
+    overflow: hidden; /* Прячем выходящее за границы содержимое */
+  }
+  
+  .material-card.selected {
+    border-color: #007bff;
+    transform: scale(1.05);
+  }
+  
+  .material-image {
+    width: 70%;
+    height: auto;
+    max-width: 150px;
+    max-height: 150px;
+    object-fit: cover;
+    margin-bottom: 10px;
+  }
+  
+  h3 {
+    margin: 0;
+    font-size: 15px;
+    text-align: center;
+  }
