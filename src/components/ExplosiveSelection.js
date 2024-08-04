@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback} from 'react';
 import ExplosiveCard from './ExplosiveCard';
 import MaterialSelection from './MaterialSelection';
 import WoodenBuildSelection from './WoodenBuildSelection';
@@ -8,6 +8,8 @@ import SteelBuildSelection from './SteelBuildSelection';
 import TitanBuildSelection from './TitanBuildSelection';
 import ObjectBuildSelection from './ObjectBuildSelection';
 import './ExplosiveSelection.css';
+
+const tg = window.Telegram.WebApp;
 
 const explosives = [
   { name: "Бобовка", imagePath: "/images/bb.png" },
@@ -118,7 +120,35 @@ const ExplosiveSelection = ({ setStep }) => {
 
   useEffect(() => {
     setStep(step); // Передаем состояние шага в App
+
+    // Инициализация кнопок Telegram Web App
+    tg.expand(); // Расширить Web App
+    tg.setHeaderColor('#007bff'); // Установить цвет заголовка
   }, [step, setStep]);
+
+  const handleTryAgain = useCallback(() => {
+    // Сброс состояния и скрытие кнопки
+    localSetStep(1);
+    setSelectedExplosive(null);
+    setSelectedMaterial(null);
+    setSelectedBuildType(null);
+    setQuantity(0);
+    tg.MainButton.hide();
+    tg.MainButton.offClick(handleTryAgain);
+  }, []);
+
+  useEffect(() => {
+    if (step === 4) {
+      tg.MainButton.text = "Попробовать снова";
+      tg.MainButton.onClick(handleTryAgain);
+      tg.MainButton.show();
+
+      tg.BackButton.hide();
+      return () => {
+        tg.MainButton.offClick(handleTryAgain);
+      };
+    }
+  }, [step, handleTryAgain]);
 
   const handleSelectExplosive = (name) => {
     setSelectedExplosive(name);
@@ -161,7 +191,7 @@ const ExplosiveSelection = ({ setStep }) => {
       if (requiredAmount === "Невозможно") {
         return { amount: "Невозможно", sulfur: "Невозможно" };
       }
-      if(requiredAmount === "Не целесообразно"){
+      if (requiredAmount === "Не целесообразно") {
         return { amount: "Не целесообразно", sulfur: "Не целесообразно" };
       }
       const totalAmount = requiredAmount * quantity;
@@ -182,7 +212,7 @@ const ExplosiveSelection = ({ setStep }) => {
         </strong>
       );
     }
-    
+
     if (amount === "Не целесообразно") {
       return (
         <strong>
@@ -198,6 +228,15 @@ const ExplosiveSelection = ({ setStep }) => {
         Серы: <span className="highlight-text">{sulfur}</span>
       </>
     );
+  };
+
+  const handleTelegramButton = (action) => {
+    // Пример действия с Telegram кнопками
+    if (action === 'next') {
+      handleNextStep();
+    } else if (action === 'back') {
+      handlePreviousStep();
+    }
   };
 
   return (
@@ -218,7 +257,7 @@ const ExplosiveSelection = ({ setStep }) => {
           <button
             className="next-step"
             disabled={!selectedExplosive}
-            onClick={handleNextStep}
+            onClick={() => handleTelegramButton('next')}
           >
             Далее
           </button>
@@ -226,11 +265,11 @@ const ExplosiveSelection = ({ setStep }) => {
       ) : step === 2 ? (
         <div>
           <MaterialSelection onSelectMaterial={handleSelectMaterial} />
-          <button className="back-step" onClick={handlePreviousStep}>Назад</button>
+          <button className="back-step" onClick={() => handleTelegramButton('back')}>Назад</button>
           <button
             className="next-step"
             disabled={!selectedMaterial}
-            onClick={handleNextStep}
+            onClick={() => handleTelegramButton('next')}
           >
             Далее
           </button>
@@ -255,14 +294,14 @@ const ExplosiveSelection = ({ setStep }) => {
           {selectedMaterial === "Объекты" && (
             <ObjectBuildSelection onSelectBuildType={handleSelectBuildType} />
           )}
-          <button className="back-step" onClick={handlePreviousStep}>Назад</button>
+          <button className="back-step" onClick={() => handleTelegramButton('back')}>Назад</button>
         </div>
       ) : step === 4 ? (
         <div>
           <p>
             {formatResultText()}
           </p>
-          <button className="back-step" onClick={handlePreviousStep}>Назад</button>
+          <button className="back-step" onClick={() => handleTelegramButton('back')}>Назад</button>
         </div>
       ) : null}
     </div>

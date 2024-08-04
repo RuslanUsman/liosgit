@@ -1,3 +1,4 @@
+
 .App {
   text-align: center;
 }
@@ -49,8 +50,8 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  max-width: 100px;
-  min-height: 100px;
+  max-width: 150px;
+  min-height: 150px;
   box-sizing: border-box;
   overflow: hidden; /* Прячем выходящее за границы содержимое */
 }
@@ -65,7 +66,7 @@
 }
 
 .explosive-image, .material-image {
-  width: 70%;
+  width: 100%;
   max-width: 100px; /* Ограниченная максимальная ширина изображения */
   height: auto; /* Автоматическая высота для сохранения пропорций */
   object-fit: contain; /* Сохранение пропорций изображения внутри контейнера */

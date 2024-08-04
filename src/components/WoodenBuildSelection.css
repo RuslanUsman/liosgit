@@ -28,8 +28,8 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  max-width: 100px;
-  min-height: 100px;
+  max-width: 150px;
+  min-height: 150px;
   box-sizing: border-box;
   position: relative;
   overflow: hidden; /* Прячем выходящее за границы содержимое */
@@ -45,7 +45,7 @@
 }
 
 .wooden-build-image {
-  width: 70%;
+  width: 100%;
   max-width: 100px; /* Ограниченная максимальная ширина изображения */
   height: auto; /* Автоматическая высота для сохранения пропорций */
   object-fit: contain; /* Сохранение пропорций изображения внутри контейнера */
@@ -55,7 +55,7 @@
 
 .wooden-build-card h3 {
   margin: 0;
-  font-size: 15px;
+  font-size: 17px;
   line-height: 1.2;
   color: #f0f0f0;
 }
