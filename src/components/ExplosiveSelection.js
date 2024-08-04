@@ -154,6 +154,7 @@ const ExplosiveSelection = ({ setStep }) => {
     setSelectedExplosive(name);
     tg.MainButton.text = "Далее";
     tg.MainButton.show();
+    tg.MainButton.offClick(handleNextStep); // Очищаем предыдущий обработчик
     tg.MainButton.onClick(handleNextStep);
   };
 
@@ -181,6 +182,7 @@ const ExplosiveSelection = ({ setStep }) => {
     setSelectedMaterial(name);
     tg.MainButton.text = "Далее";
     tg.MainButton.show();
+    tg.MainButton.offClick(handleNextStep); // Очищаем предыдущий обработчик
     tg.MainButton.onClick(handleNextStep);
   };
 
